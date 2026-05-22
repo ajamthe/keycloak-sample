@@ -1,0 +1,86 @@
+{
+  "realm": "demo-realm",
+  "enabled": true,
+  "sslRequired": "external",
+  "registrationAllowed": false,
+  "loginWithEmailAllowed": true,
+  "duplicateEmailsAllowed": false,
+  "resetPasswordAllowed": false,
+  "editUsernameAllowed": false,
+  "bruteForceProtected": true,
+  "accessTokenLifespan": 300,
+  "refreshTokenMaxReuse": 0,
+  "revokeRefreshToken": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "client",
+        "description": "Standard role required to access protected APIs",
+        "composite": false,
+        "clientRole": false
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "angular-app",
+      "name": "Angular Demo App",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "redirectUris": [
+        "http://localhost:4200/*",
+        "http://localhost:4200/app/*",
+        "http://localhost:4200/"
+      ],
+      "webOrigins": [
+        "http://localhost:4200"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "use.refresh.tokens": "true",
+        "client.session.idle.timeout": "1800",
+        "refresh.token.max.reuse": "0"
+      },
+      "protocol": "openid-connect",
+      "fullScopeAllowed": true
+    }
+  ],
+  "users": [
+    {
+      "username": "alice",
+      "email": "alice@demo.local",
+      "firstName": "Alice",
+      "lastName": "User",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "pa55word",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["client"]
+    },
+    {
+      "username": "bob",
+      "email": "bob@demo.local",
+      "firstName": "Bob",
+      "lastName": "NoAccess",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "pa55word",
+          "temporary": false
+        }
+      ],
+      "realmRoles": []
+    }
+  ]
+}
